@@ -1,3 +1,4 @@
+import WeddingCalendar from './components/WeddingCalendar'
 import BotanicalCorners from './components/BotanicalCorners'
 import { useEffect, useState } from 'react'
 import heroPhoto from './assets/FotoCasamiento.png'
@@ -53,11 +54,11 @@ function Divider() {
   )
 }
 
-function Section({ eyebrow, children }) {
+function Section({ eyebrow, children, prominent = false }) {
   return (
     <section className="text-center space-y-6">
       {eyebrow && (
-        <p className="text-[11px] sm:text-xs tracking-[0.22em] uppercase text-stone-500">
+        <p className={prominent ? "text-base sm:text-lg tracking-[0.22em] uppercase text-[#493B30]" : "text-[11px] sm:text-xs tracking-[0.22em] uppercase text-stone-500"}>
           {eyebrow}
         </p>
       )}
@@ -103,15 +104,8 @@ export default function App() {
       <main className="relative isolate mx-auto w-full max-w-2xl px-6 py-16 sm:py-24 md:py-32 space-y-20 md:space-y-28">
         <BotanicalCorners />
 
-        <Section eyebrow="El gran día">
-          <div className="space-y-2">
-            <p className="font-display text-xl italic text-stone-500">Sábado</p>
-            <p className="font-display text-8xl sm:text-9xl font-normal leading-none tracking-tight">02</p>
-            <p className="font-display text-4xl sm:text-5xl italic text-stone-600">
-              Octubre
-            </p>
-            <p className="text-sm tracking-[0.08em] text-stone-500 pt-3">2027 · 19:30 hs</p>
-          </div>
+        <Section eyebrow="El gran día" prominent>
+          <WeddingCalendar />
         </Section>
 
         <Divider />
