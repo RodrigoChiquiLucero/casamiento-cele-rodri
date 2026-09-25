@@ -1,3 +1,4 @@
+import BotanicalCorners from './components/BotanicalCorners'
 import { useEffect, useState } from 'react'
 import heroPhoto from './assets/FotoCasamiento.png'
 import EnvelopeIntro from './components/EnvelopeIntro'
@@ -9,17 +10,13 @@ const LOCATIONS = [
     label: 'La ceremonia',
     name: 'Convento San Alfonso',
     time: '19:30 hs',
-    instagram: 'https://www.instagram.com/conventosanalfonso/',
     maps: 'https://www.google.com/maps?cid=7930684530931996123',
-    embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4405.5790035539385!2d-64.30062897708476!3d-31.304843424020394!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94329d06c7decc7f%3A0x6e0f738ff3e315db!2sConvento%20San%20Alfonso!5e0!3m2!1ses-419!2sar!4v1790346679405!5m2!1ses-419!2sar',
   },
   {
     label: 'La fiesta',
     name: 'Bolgheri',
     time: '21:00 hs',
-    instagram: 'https://www.instagram.com/bolgheri.eventos/?hl=es',
     maps: 'https://www.google.com/maps?cid=8508632084612308582',
-    embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3409.80977577974!2d-64.30182342359483!3d-31.281356589738092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94329d2476116da9%3A0x7614bbccdfcede66!2sBolgheri!5e0!3m2!1ses-419!2sar!4v1790346847181!5m2!1ses-419!2sar',
   },
 ]
 const CARD_PRICE = 'A consultar'
@@ -83,7 +80,7 @@ export default function App() {
   return (
     <>
       {!introDone && <EnvelopeIntro onOpen={() => setIntroDone(true)} />}
-      <div className="min-h-screen bg-[#faf9f6] text-stone-800 font-normal selection:bg-stone-800 selection:text-stone-50">
+      <div className="min-h-screen bg-[#EDE5D9] text-[#493B30] font-normal selection:bg-stone-800 selection:text-stone-50">
 
       <header className="relative h-screen w-full overflow-hidden">
         <img
@@ -103,7 +100,8 @@ export default function App() {
         </div>
       </header>
 
-      <main className="mx-auto w-full max-w-2xl px-6 py-16 sm:py-24 md:py-32 space-y-20 md:space-y-28">
+      <main className="relative isolate mx-auto w-full max-w-2xl px-6 py-16 sm:py-24 md:py-32 space-y-20 md:space-y-28">
+        <BotanicalCorners />
 
         <Section eyebrow="El gran día">
           <div className="space-y-2">
@@ -143,20 +141,10 @@ export default function App() {
                   <p className="text-[11px] uppercase tracking-[0.3em] text-stone-500">
                     {location.label}
                   </p>
-                  <h2 className="font-display text-4xl sm:text-5xl font-normal leading-tight text-[#405b67]">{location.name}</h2>
+                  <h2 className="font-display text-4xl sm:text-5xl font-normal leading-tight text-[#493B30]">{location.name}</h2>
                   <p className="text-sm tracking-[0.08em] text-stone-600">{location.time}</p>
                 </div>
-                <div className="overflow-hidden rounded-2xl border border-stone-200 bg-stone-100">
-                  <iframe
-                    title={`Ubicación de ${location.name}`}
-                    src={location.embed}
-                    className="block h-72 w-full border-0 sm:h-80"
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                  />
-                </div>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <div className="mx-auto grid w-full max-w-xs grid-cols-1">
                   <a
                     href={location.maps}
                     target="_blank"
@@ -165,15 +153,6 @@ export default function App() {
                     className="invitation-link"
                   >
                     Cómo llegar <span aria-hidden="true">↗</span>
-                  </a>
-                  <a
-                    href={location.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Instagram de ${location.name} (abre en otra pestaña)`}
-                    className="invitation-link invitation-link-secondary"
-                  >
-                    Ver Instagram <span aria-hidden="true">↗</span>
                   </a>
                 </div>
               </article>
@@ -184,7 +163,7 @@ export default function App() {
         <Divider />
 
         <Section eyebrow="Precio de la tarjeta">
-          <p className="font-display text-4xl sm:text-5xl font-normal italic text-[#405b67]">
+          <p className="font-display text-4xl sm:text-5xl font-normal italic text-[#493B30]">
             {CARD_PRICE}
           </p>
           {CARD_PRICE_PERIOD && (
@@ -199,7 +178,7 @@ export default function App() {
         <Divider />
 
         <Section eyebrow="Confirmá tu asistencia">
-          <h2 className="font-display text-4xl sm:text-5xl font-normal leading-tight text-[#405b67]">¡Queremos que estés!</h2>
+          <h2 className="font-display text-4xl sm:text-5xl font-normal leading-tight text-[#493B30]">¡Queremos que estés!</h2>
           <p className="mx-auto max-w-sm text-sm leading-relaxed text-stone-600">
             Nos hace mucha ilusión compartir este día con vos.
           </p>

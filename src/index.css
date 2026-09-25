@@ -21,11 +21,11 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  border: 1px solid #c6d3d8;
+  border: 1px solid #bcaa94;
   border-radius: 999px;
   padding: 0.75rem 1.5rem;
-  color: #405b67;
-  background: #f3f7f8;
+  color: #493B30;
+  background: #e6dac9;
   font-family: var(--font-display);
   font-size: 1.25rem;
   line-height: 1.3;
@@ -33,12 +33,12 @@ body {
 }
 
 .invitation-link:hover {
-  background: #e7eff2;
-  border-color: #8da5b0;
+  background: #dac8b1;
+  border-color: #95755b;
 }
 
 .invitation-link:focus-visible {
-  outline: 2px solid #405b67;
+  outline: 2px solid #493B30;
   outline-offset: 4px;
 }
 
@@ -46,4 +46,31 @@ body {
   background: transparent;
   border-color: #dedbd5;
   color: #57534e;
+}
+
+.botanical-corners {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  z-index: -1;
+}
+
+.botanical-sprig {
+  position: absolute;
+  width: clamp(100px, 20vw, 200px);
+  color: #ad9b85;
+  opacity: 0.55;
+}
+
+.botanical-sprig-top {
+  top: 0;
+  left: -20px;
+  transform: rotate(180deg);
+}
+
+.botanical-sprig-bottom {
+  bottom: 0;
+  right: -20px;
 }

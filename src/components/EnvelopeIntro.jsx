@@ -1,3 +1,4 @@
+import BotanicalCorners from './BotanicalCorners'
 import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 
@@ -24,7 +25,7 @@ function WaxSeal({ className }) {
 
   return (
     <svg viewBox="0 0 100 100" className={className} aria-hidden="true">
-      <path d={wavyPath} fill="#e5d7c1" stroke="currentColor" strokeWidth="0.7" />
+      <path d={wavyPath} fill="#C7B68D" stroke="currentColor" strokeWidth="0.7" />
       <circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" strokeWidth="0.5" />
 
       <defs>
@@ -105,11 +106,12 @@ export default function EnvelopeIntro({ onOpen }) {
       {phase !== 'done' && (
         <motion.div
           key="envelope-intro"
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#faf9f6] px-4 sm:px-6"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#EDE5D9] px-4 sm:px-6"
           exit={{ opacity: 0 }}
           transition={{ duration: reduceMotion ? 0 : 0.8, ease: 'easeOut' }}
         >
-          <p className="absolute top-10 sm:top-14 font-display text-3xl sm:text-4xl italic text-stone-600">
+          <BotanicalCorners />
+          <p className="absolute top-10 sm:top-14 font-display text-3xl sm:text-4xl italic text-[#493B30]">
             Cele &amp; Rodri
           </p>
 
@@ -123,10 +125,10 @@ export default function EnvelopeIntro({ onOpen }) {
           >
             <div className="relative w-[min(84vw,52svh,24rem)] aspect-[3/2]">
 
-              <div className="absolute inset-0 bg-[#e9e2d7] border border-[#d9cebf] rounded-sm shadow-[0_18px_60px_-15px_rgba(85,70,48,0.25)]" />
+              <div className="absolute inset-0 bg-[#795B46] border border-[#634935] rounded-sm shadow-[0_18px_60px_-15px_rgba(85,70,48,0.25)]" />
 
               <motion.div
-                className="absolute inset-x-3 inset-y-2 flex flex-col items-center justify-center gap-2 rounded-sm border border-[#e4dacb] bg-[#fffdf8] text-stone-600 shadow-sm"
+                className="absolute inset-x-3 inset-y-2 flex flex-col items-center justify-center gap-2 rounded-sm border border-[#e4dacb] bg-[#fffdf8] text-[#493B30] shadow-sm"
                 initial={false}
                 animate={phase === 'opening' ? { y: '-36%' } : { y: 0 }}
                 transition={{ duration: 0.9, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
@@ -140,19 +142,19 @@ export default function EnvelopeIntro({ onOpen }) {
 
               <div
                 aria-hidden="true"
-                className="absolute inset-0 z-10 rounded-sm bg-[linear-gradient(135deg,#eee7dc,#e1d5c4)]"
+                className="absolute inset-0 z-10 rounded-sm bg-[linear-gradient(135deg,#8b6c54,#6c503e)]"
                 style={{ clipPath: 'polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%)' }}
               />
               <div
                 aria-hidden="true"
-                className="absolute inset-0 z-10 rounded-sm bg-[linear-gradient(0deg,#f1ebe1,#e6dccd)]"
+                className="absolute inset-0 z-10 rounded-sm bg-[linear-gradient(0deg,#82624b,#95755b)]"
                 style={{ clipPath: 'polygon(0 100%, 50% 48%, 100% 100%)' }}
               />
 
               <motion.div
-                className="absolute inset-0 origin-top border-b border-[#d6c9b7]"
+                className="absolute inset-0 origin-top border-b border-[#634935]"
                 style={{
-                  background: 'linear-gradient(180deg, #f3ede3, #e4d8c6)',
+                  background: 'linear-gradient(180deg, #99775b, #795B46)',
                   clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
                   transformStyle: 'preserve-3d',
                   backfaceVisibility: 'hidden',
@@ -168,7 +170,7 @@ export default function EnvelopeIntro({ onOpen }) {
               />
 
               <motion.div
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#79664b]"
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#594631]"
                 style={{ zIndex: 30 }}
                 animate={
                   phase === 'opening'
@@ -186,7 +188,7 @@ export default function EnvelopeIntro({ onOpen }) {
             {phase === 'closed' && (
               <motion.p
                 key="hint"
-                className="absolute bottom-12 sm:bottom-14 text-[11px] tracking-[0.2em] text-stone-600"
+                className="absolute bottom-12 sm:bottom-14 text-[11px] tracking-[0.2em] text-[#493B30]"
                 initial={{ opacity: reduceMotion ? 1 : 0 }}
                 animate={{ opacity: reduceMotion ? 1 : [0.5, 1, 0.5] }}
                 exit={{ opacity: 0 }}
