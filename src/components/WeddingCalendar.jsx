@@ -4,11 +4,10 @@ const DAYS = Array.from({ length: 35 }, (_, index) => index < 4 ? null : index -
 
 export default function WeddingCalendar() {
   return (
-    <div className="mx-auto max-w-sm rounded-2xl border border-[#bcaa94]/50 bg-[#f5efe5] px-3 py-6 sm:px-6 sm:py-8">
+    <div className="mx-auto max-w-sm rounded-2xl border border-[#bcaa94]/25 bg-[#f0e9df] px-3 py-6 sm:px-6 sm:py-8">
       <table className="w-full table-fixed border-collapse text-[#493B30]">
         <caption className="pb-5">
-          <span className="block font-display text-3xl sm:text-4xl italic">Sábado 2 de octubre</span>
-          <span className="mt-1 block font-display text-2xl italic text-[#795B46]">del 2027</span>
+          <span className="block font-display text-3xl sm:text-4xl italic">Octubre 2027</span>
         </caption>
         <thead>
           <tr>
@@ -39,6 +38,18 @@ export default function WeddingCalendar() {
           ))}
         </tbody>
       </table>
+      <div className="mt-6 space-y-2">
+        <a
+          href={`${import.meta.env.BASE_URL}casamiento-cele-rodri.ics`}
+          download="casamiento-cele-rodri.ics"
+          className="invitation-link w-full"
+        >
+          Agendar en mi calendario
+        </a>
+        <p className="text-xs leading-relaxed text-[#795B46]">
+          Descargá el evento y abrilo en tu calendario para guardarlo.
+        </p>
+      </div>
     </div>
   )
 }

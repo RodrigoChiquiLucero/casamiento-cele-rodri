@@ -74,3 +74,23 @@ body {
   bottom: 0;
   right: -20px;
 }
+
+.payment-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  padding: 0;
+  width: min(30rem, calc(100% - 2rem));
+  max-height: 85dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid #bcaa94;
+  border-radius: 1.25rem;
+  background: #f0e9df;
+  text-align: left;
+  box-shadow: 0 24px 80px rgb(49 36 25 / 25%);
+}
+
+.payment-dialog::backdrop {
+  background: rgb(49 36 25 / 55%);
+}

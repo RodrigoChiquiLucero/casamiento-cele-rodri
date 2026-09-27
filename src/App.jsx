@@ -1,3 +1,4 @@
+import PaymentDetails from './components/PaymentDetails'
 import WeddingCalendar from './components/WeddingCalendar'
 import BotanicalCorners from './components/BotanicalCorners'
 import { useEffect, useState } from 'react'
@@ -20,11 +21,12 @@ const LOCATIONS = [
     maps: 'https://www.google.com/maps?cid=8508632084612308582',
   },
 ]
-const CARD_PRICE = 'A consultar'
-// Completar junto con el precio, por ejemplo: 'Septiembre de 2026'.
-const CARD_PRICE_PERIOD = ''
 // Pegar acá el enlace público de Google Forms cuando esté disponible.
 const RSVP_FORM_URL = ''
+// La misma cuenta se usa para abonar la tarjeta y para regalos opcionales.
+const PAYMENT_ACCOUNT = { alias: '', cbu: '', holder: '', bank: '' }
+// Completar los valores vigentes, incluyendo la moneda (por ejemplo, '$ 50.000').
+const TICKET_PRICES = { adults: '', children: '' }
 
 function useCountdown(targetDate) {
   const [now, setNow] = useState(() => new Date())
@@ -110,6 +112,16 @@ export default function App() {
 
         <Divider />
 
+        <Section>
+          <h2 className="font-display text-4xl sm:text-5xl font-normal leading-tight text-[#493B30]">
+            Compartamos este capítulo
+          </h2>
+          <p className="mx-auto w-[85%] max-w-64 text-sm leading-relaxed text-stone-600 sm:w-full sm:max-w-sm">
+            ¡Nos hace mucha ilusión celebrarlo con vos!
+            Tu compañía hará que este día sea aún más especial.
+          </p>
+        </Section>
+
         <Section eyebrow="Faltan">
           <div className="grid grid-cols-4 gap-2 sm:gap-6 max-w-md mx-auto">
             {COUNTDOWN_UNITS.map(({ key, label }) => (
@@ -156,43 +168,42 @@ export default function App() {
 
         <Divider />
 
-        <Section eyebrow="Precio de la tarjeta">
-          <p className="font-display text-4xl sm:text-5xl font-normal italic text-[#493B30]">
-            {CARD_PRICE}
-          </p>
-          {CARD_PRICE_PERIOD && (
-            <p className="text-sm text-stone-600">Valor correspondiente a {CARD_PRICE_PERIOD}</p>
-          )}
+        <Section>
+          <svg className="mx-auto h-12 w-12 text-[#795B46]" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+            <path d="M9 23v18h30V23M6 16h36v7H6zM24 16v25" />
+            <path d="M24 16c-8 0-13-2-13-6a4 4 0 0 1 7-3c3 3 6 9 6 9Zm0 0c8 0 13-2 13-6a4 4 0 0 0-7-3c-3 3-6 9-6 9Z" />
+          </svg>
+          <h2 className="font-display text-3xl sm:text-4xl italic text-[#493B30]">Un regalo de corazón</h2>
           <p className="mx-auto max-w-sm text-sm leading-relaxed text-stone-600">
-            El valor de la tarjeta se actualizará mes a mes.
-            Consultá el precio vigente antes de realizar el pago.
+            Tu presencia es el regalo más importante para nosotros. Sin embargo,
+            si deseas acompañarnos con un detalle, puedes encontrar la información a continuación:
           </p>
+          <PaymentDetails account={PAYMENT_ACCOUNT} prices={TICKET_PRICES} />
         </Section>
 
-        <Divider />
-
-        <Section eyebrow="Confirmá tu asistencia">
-          <h2 className="font-display text-4xl sm:text-5xl font-normal leading-tight text-[#493B30]">¡Queremos que estés!</h2>
-          <p className="mx-auto max-w-sm text-sm leading-relaxed text-stone-600">
-            Nos hace mucha ilusión compartir este día con vos.
-          </p>
+        <Section eyebrow="Confirmar tu asistencia">
+        <div className="mx-auto grid w-full max-w-xs grid-cols-1">
           {RSVP_FORM_URL ? (
-            <div className="space-y-3">
-              <a
-                href={RSVP_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="invitation-link w-full sm:w-auto sm:px-8"
-              >
-                Confirmar asistencia <span aria-hidden="true">↗</span>
-              </a>
-              <p className="text-xs text-stone-500">El formulario se abre en otra pestaña.</p>
-            </div>
+            <a
+              href={RSVP_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Confirmar asistencia (abre en otra pestaña)"
+              className="invitation-link"
+            >
+              Confirmar <span aria-hidden="true">↗</span>
+            </a>
           ) : (
-            <p className="mx-auto max-w-sm border-t border-stone-200 px-2 pt-5 text-sm leading-relaxed text-stone-500">
-              Pronto vas a poder confirmar tu asistencia desde acá.
-            </p>
+            <button
+              type="button"
+              disabled
+              title="El formulario estará disponible próximamente"
+              className="invitation-link cursor-not-allowed opacity-60"
+            >
+              Confirmar <span aria-hidden="true">↗</span>
+            </button>
           )}
+        </div>
         </Section>
 
         <footer className="pt-12 text-center font-display text-xl italic text-stone-500">

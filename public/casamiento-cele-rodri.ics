@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Cele y Rodri//Invitacion de casamiento//ES
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:casamiento-cele-rodri-20271002@casamiento-cele-rodri
+DTSTAMP:20260927T000000Z
+DTSTART:20271002T223000Z
+SUMMARY:Casamiento de Cele y Rodri
+LOCATION:Convento San Alfonso
+DESCRIPTION:¡Nos casamos!\nSábado 2 de octubre de 2027.\nCeremonia: 19:30
+  hs en Convento San Alfonso.\nCómo llegar: https://www.google.com/maps?ci
+ d=7930684530931996123\nFiesta: 21:00 hs en Bolgheri.\nCómo llegar: https:
+ //www.google.com/maps?cid=8508632084612308582\nHorarios de Argentina.\nRec
+ ordá confirmar tu asistencia desde la invitación.
+END:VEVENT
+END:VCALENDAR
