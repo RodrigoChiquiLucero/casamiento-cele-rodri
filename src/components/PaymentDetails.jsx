@@ -31,40 +31,40 @@ export default function PaymentDetails({ account, prices }) {
         }}
       >
         <div className="payment-dialog-content">
-          <div className="sticky top-0 z-10 flex items-center justify-between gap-3 border-b border-[#bcaa94]/30 bg-[#f0e9df] px-5 py-3">
-            <h2 id="payment-title" className="font-display text-3xl italic text-[#493B30]">Tarjeta y regalos</h2>
-            <button type="button" autoFocus onClick={() => setOpen(false)} aria-label="Cerrar datos" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-2xl text-[#795B46] hover:bg-[#e6dac9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#795B46]">
+          <div className="sticky top-0 z-10 flex items-center justify-between gap-3 border-b border-[#BCA477]/30 bg-[#EADBC6] px-5 py-3">
+            <h2 id="payment-title" className="font-display text-3xl italic text-[#51402B]">Tarjeta y regalos</h2>
+            <button type="button" autoFocus onClick={() => setOpen(false)} aria-label="Cerrar datos" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-2xl text-[#816035] hover:bg-[#E2CCAA] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#816035]">
               <span aria-hidden="true">×</span>
             </button>
           </div>
           <div className="space-y-6 px-5 py-6 sm:px-8">
             <section aria-labelledby="ticket-title">
-              <h3 id="ticket-title" className="mb-4 font-display text-2xl text-[#493B30]">Valor de la tarjeta por persona</h3>
+              <h3 id="ticket-title" className="mb-4 font-display text-2xl text-[#51402B]">Valor de la tarjeta por persona</h3>
               <dl className="grid grid-cols-2 gap-3">
                 {[[ 'Adultos', prices.adults ], [ 'Niños', prices.children ]].map(([label, value]) => (
-                  <div key={label} className="rounded-xl border border-[#bcaa94]/30 p-3">
+                  <div key={label} className="rounded-xl border border-[#BCA477]/30 p-3">
                     <dt className="text-sm text-stone-600">{label}</dt>
-                    <dd className="mt-2 break-words font-display text-2xl text-[#493B30]">{value || 'A consultar'}</dd>
+                    <dd className="mt-2 break-words font-display text-2xl text-[#51402B]">{value || 'A consultar'}</dd>
                   </div>
                 ))}
               </dl>
             </section>
             <section aria-labelledby="account-title">
-              <h3 id="account-title" className="mb-3 font-display text-2xl text-[#493B30]">Datos de la cuenta</h3>
+              <h3 id="account-title" className="mb-3 font-display text-2xl text-[#51402B]">Datos de la cuenta</h3>
               <p className="mb-4 text-sm leading-relaxed text-stone-600">Podés usar esta misma cuenta para abonar la tarjeta y, si querés, hacernos un regalo.</p>
               <dl className="space-y-4 text-sm">
                 {[
-                  ['Alias', account.alias], ['CBU', account.cbu],
+                  ['Alias', account.alias], ['CVU', account.cvu],
                   ['Nombre', account.holder], ['Banco', account.bank],
                 ].map(([label, value]) => (
                   <div key={label}>
-                    <dt className="font-medium text-[#493B30]">{label}</dt>
+                    <dt className="font-medium text-[#51402B]">{label}</dt>
                     <dd className="mt-1 break-all select-all text-stone-600">{value || 'Próximamente'}</dd>
                   </div>
                 ))}
               </dl>
             </section>
-            <p className="border-t border-[#bcaa94]/30 pt-4 text-xs leading-relaxed text-stone-600">
+            <p className="border-t border-[#BCA477]/30 pt-4 text-xs leading-relaxed text-stone-600">
               El valor de la tarjeta se actualizará mes a mes. Consultá el precio vigente antes de realizar el pago.
             </p>
           </div>

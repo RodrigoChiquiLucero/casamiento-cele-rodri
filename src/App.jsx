@@ -27,7 +27,12 @@ const RSVP_FORM_URL = ''
 // Enlace para agregar canciones: playlist colaborativa o formulario de sugerencias.
 const SONG_REQUEST_URL = ''
 // La misma cuenta se usa para abonar la tarjeta y para regalos opcionales.
-const PAYMENT_ACCOUNT = { alias: '', cbu: '', holder: '', bank: '' }
+const PAYMENT_ACCOUNT = {
+  alias: 'bodaceleyrodri2027',
+  cvu: '0000003100043666057513',
+  holder: 'Rodrigo Daniel Lucero',
+  bank: 'Mercado Pago',
+}
 // Completar los valores vigentes, incluyendo la moneda (por ejemplo, '$ 50.000').
 const TICKET_PRICES = { adults: '', children: '' }
 
@@ -63,7 +68,7 @@ function Section({ eyebrow, children, prominent = false }) {
   return (
     <section className="text-center space-y-6">
       {eyebrow && (
-        <p className={prominent ? "text-base sm:text-lg tracking-[0.22em] uppercase text-[#493B30]" : "text-[11px] sm:text-xs tracking-[0.22em] uppercase text-stone-500"}>
+        <p className={prominent ? "text-base sm:text-lg tracking-[0.22em] uppercase text-[#51402B]" : "text-[11px] sm:text-xs tracking-[0.22em] uppercase text-stone-500"}>
           {eyebrow}
         </p>
       )}
@@ -86,7 +91,7 @@ export default function App() {
   return (
     <>
       {!introDone && <EnvelopeIntro onOpen={() => setIntroDone(true)} />}
-      <div className="min-h-screen bg-[#EDE5D9] text-[#493B30] font-normal selection:bg-stone-800 selection:text-stone-50">
+      <div className="min-h-screen bg-[#F2E9DA] text-[#51402B] font-normal selection:bg-stone-800 selection:text-stone-50">
 
       <header className="relative h-screen w-full overflow-hidden">
         <img
@@ -116,7 +121,7 @@ export default function App() {
         <Divider />
 
         <Section>
-          <h2 className="font-display text-4xl sm:text-5xl font-normal leading-tight text-[#493B30]">
+          <h2 className="font-display text-4xl sm:text-5xl font-normal leading-tight text-[#51402B]">
             Compartamos este capítulo
           </h2>
           <p className="mx-auto w-[85%] max-w-64 text-sm leading-relaxed text-stone-600 sm:w-full sm:max-w-sm">
@@ -161,7 +166,7 @@ export default function App() {
                   <p className="text-[11px] uppercase tracking-[0.3em] text-stone-500">
                     {location.label}
                   </p>
-                  <h2 className="font-display text-4xl sm:text-5xl font-normal leading-tight text-[#493B30]">{location.name}</h2>
+                  <h2 className="font-display text-4xl sm:text-5xl font-normal leading-tight text-[#51402B]">{location.name}</h2>
                   <p className="text-sm tracking-[0.08em] text-stone-600">{location.time}</p>
                 </div>
                 <div className="mx-auto grid w-full max-w-xs grid-cols-1">
@@ -183,11 +188,11 @@ export default function App() {
         <Divider />
 
         <Section>
-          <svg className="mx-auto h-12 w-12 text-[#795B46]" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+          <svg className="mx-auto h-12 w-12 text-[#816035]" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
             <path d="M9 23v18h30V23M6 16h36v7H6zM24 16v25" />
             <path d="M24 16c-8 0-13-2-13-6a4 4 0 0 1 7-3c3 3 6 9 6 9Zm0 0c8 0 13-2 13-6a4 4 0 0 0-7-3c-3 3-6 9-6 9Z" />
           </svg>
-          <h2 className="font-display text-3xl sm:text-4xl italic text-[#493B30]">Un regalo de corazón</h2>
+          <h2 className="font-display text-3xl sm:text-4xl italic text-[#51402B]">Un regalo de corazón</h2>
           <p className="mx-auto max-w-sm text-sm leading-relaxed text-stone-600">
             Tu presencia es el regalo más importante para nosotros. Sin embargo,
             si deseas acompañarnos con un detalle, puedes encontrar la información a continuación:
@@ -223,15 +228,15 @@ export default function App() {
         <Divider />
 
         <Section>
-          <svg className="mx-auto h-12 w-12 text-[#795B46]" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <svg className="mx-auto h-12 w-12 text-[#816035]" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
             <circle cx="24" cy="24" r="22" fill="currentColor" />
-            <g fill="none" stroke="#EDE5D9" strokeLinecap="round">
+            <g fill="none" stroke="#F2E9DA" strokeLinecap="round">
               <path d="M12 19C20 16 29 16 37 21" strokeWidth="3.5" />
               <path d="M14 25C21 22.5 28 23 34 27" strokeWidth="3" />
               <path d="M16 31C22 29 27 29.5 32 32" strokeWidth="2.5" />
             </g>
           </svg>
-          <h2 className="font-display text-3xl sm:text-4xl italic text-[#493B30]">La música la elegimos juntos</h2>
+          <h2 className="font-display text-3xl sm:text-4xl italic text-[#51402B]">La música la elegimos juntos</h2>
           <p className="mx-auto w-[85%] max-w-64 text-sm leading-relaxed text-stone-600 sm:w-full sm:max-w-sm">
             ¿Qué canción no puede faltar en nuestra fiesta? Sumá ese tema que te hace salir a bailar.
           </p>
