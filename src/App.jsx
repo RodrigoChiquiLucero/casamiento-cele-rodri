@@ -24,6 +24,8 @@ const LOCATIONS = [
 ]
 // Pegar acá el enlace público de Google Forms cuando esté disponible.
 const RSVP_FORM_URL = ''
+// Enlace para agregar canciones: playlist colaborativa o formulario de sugerencias.
+const SONG_REQUEST_URL = ''
 // La misma cuenta se usa para abonar la tarjeta y para regalos opcionales.
 const PAYMENT_ACCOUNT = { alias: '', cbu: '', holder: '', bank: '' }
 // Completar los valores vigentes, incluyendo la moneda (por ejemplo, '$ 50.000').
@@ -49,7 +51,7 @@ function useCountdown(targetDate) {
 
 function Divider() {
   return (
-    <div className="flex items-center justify-center gap-4 py-4">
+    <div className="flex items-center justify-center gap-4 py-1">
       <span className="h-px w-12 bg-stone-300" />
       <span className="h-1 w-1 rounded-full bg-stone-400" />
       <span className="h-px w-12 bg-stone-300" />
@@ -104,7 +106,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="relative isolate mx-auto w-full max-w-2xl px-6 py-16 sm:py-24 md:py-32 space-y-20 md:space-y-28">
+      <main className="relative isolate mx-auto w-full max-w-2xl px-6 py-12 sm:py-16 md:py-20 space-y-10 sm:space-y-12 md:space-y-16">
         <BotanicalCorners />
 
         <Section eyebrow="El gran día" prominent>
@@ -121,7 +123,7 @@ export default function App() {
             ¡Nos hace mucha ilusión celebrarlo con vos!
             Tu compañía hará que este día sea aún más especial.
           </p>
-          <figure className="mx-auto w-full max-w-sm rounded-sm border border-[#bcaa94]/40 bg-[#f7f1e7] p-2 pb-4 shadow-[0_10px_30px_-16px_rgba(73,59,48,0.35)] sm:p-3 sm:pb-5">
+          <figure className="mx-auto w-full max-w-sm">
             <img
               src={sunsetPhoto}
               alt="Cele y Rodri juntos frente al mar al atardecer"
@@ -152,7 +154,7 @@ export default function App() {
         <Divider />
 
         <Section eyebrow="Dónde nos encontramos">
-          <div className="space-y-10 sm:space-y-14">
+          <div className="space-y-8 sm:space-y-10">
             {LOCATIONS.map((location) => (
               <article key={location.name} className="min-w-0 space-y-5">
                 <div className="space-y-2">
@@ -218,7 +220,44 @@ export default function App() {
         </div>
         </Section>
 
-        <footer className="pt-12 text-center font-display text-xl italic text-stone-500">
+        <Divider />
+
+        <Section>
+          <svg className="mx-auto h-12 w-12 text-[#795B46]" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <circle cx="24" cy="24" r="22" fill="currentColor" />
+            <g fill="none" stroke="#EDE5D9" strokeLinecap="round">
+              <path d="M12 19C20 16 29 16 37 21" strokeWidth="3.5" />
+              <path d="M14 25C21 22.5 28 23 34 27" strokeWidth="3" />
+              <path d="M16 31C22 29 27 29.5 32 32" strokeWidth="2.5" />
+            </g>
+          </svg>
+          <h2 className="font-display text-3xl sm:text-4xl italic text-[#493B30]">La música la elegimos juntos</h2>
+          <p className="mx-auto w-[85%] max-w-64 text-sm leading-relaxed text-stone-600 sm:w-full sm:max-w-sm">
+            ¿Qué canción no puede faltar en nuestra fiesta? Sumá ese tema que te hace salir a bailar.
+          </p>
+          <div className="mx-auto grid w-full max-w-xs grid-cols-1 gap-3">
+            {SONG_REQUEST_URL ? (
+              <a
+                href={SONG_REQUEST_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Agregar canción (abre en otra pestaña)"
+                className="invitation-link"
+              >
+                Agregar canción <span aria-hidden="true">↗</span>
+              </a>
+            ) : (
+              <>
+                <button type="button" disabled aria-describedby="songs-coming-soon" className="invitation-link cursor-not-allowed opacity-60">
+                  Agregar canción <span aria-hidden="true">↗</span>
+                </button>
+                <p id="songs-coming-soon" className="text-xs leading-relaxed text-stone-600">Pronto vas a poder sumar tu canción.</p>
+              </>
+            )}
+          </div>
+        </Section>
+
+        <footer className="pt-4 text-center font-display text-xl italic text-stone-500">
           Cele &amp; Rodri · 2027
         </footer>
 
