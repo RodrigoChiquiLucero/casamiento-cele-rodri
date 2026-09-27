@@ -1,3 +1,4 @@
+import sunsetPhoto from './assets/cele-rodri-atardecer.jpeg'
 import PaymentDetails from './components/PaymentDetails'
 import WeddingCalendar from './components/WeddingCalendar'
 import BotanicalCorners from './components/BotanicalCorners'
@@ -120,6 +121,17 @@ export default function App() {
             ¡Nos hace mucha ilusión celebrarlo con vos!
             Tu compañía hará que este día sea aún más especial.
           </p>
+          <figure className="mx-auto w-full max-w-sm rounded-sm border border-[#bcaa94]/40 bg-[#f7f1e7] p-2 pb-4 shadow-[0_10px_30px_-16px_rgba(73,59,48,0.35)] sm:p-3 sm:pb-5">
+            <img
+              src={sunsetPhoto}
+              alt="Cele y Rodri juntos frente al mar al atardecer"
+              width="960"
+              height="1280"
+              loading="lazy"
+              decoding="async"
+              className="block h-auto w-full rounded-sm"
+            />
+          </figure>
         </Section>
 
         <Section eyebrow="Faltan">
