@@ -25,7 +25,7 @@ const LOCATIONS = [
 // Pegar acá el enlace público de Google Forms cuando esté disponible.
 const RSVP_FORM_URL = ''
 // Enlace para agregar canciones: playlist colaborativa o formulario de sugerencias.
-const SONG_REQUEST_URL = ''
+const SONG_REQUEST_URL = 'https://open.spotify.com/playlist/4SV5ATSEIuFOKugC7ER7je?si=LUAy3PNvSZiIswiKarqyiw&utm_source=whatsapp&pt=ba91fdd3b5c2c8a9b89b5f4fa917e2df&pi=CCjQqNvVQXG75'
 // La misma cuenta se usa para abonar la tarjeta y para regalos opcionales.
 const PAYMENT_ACCOUNT = {
   alias: 'bodaceleyrodri2027',
@@ -34,7 +34,7 @@ const PAYMENT_ACCOUNT = {
   bank: 'Mercado Pago',
 }
 // Completar los valores vigentes, incluyendo la moneda (por ejemplo, '$ 50.000').
-const TICKET_PRICES = { adults: '', children: '' }
+const TICKET_PRICES = { adults: '$ 175.000', children: '$ 77.000' }
 
 function useCountdown(targetDate) {
   const [now, setNow] = useState(() => new Date())

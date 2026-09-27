@@ -41,7 +41,7 @@ export default function PaymentDetails({ account, prices }) {
             <section aria-labelledby="ticket-title">
               <h3 id="ticket-title" className="mb-4 font-display text-2xl text-[#51402B]">Valor de la tarjeta por persona</h3>
               <dl className="grid grid-cols-2 gap-3">
-                {[[ 'Adultos', prices.adults ], [ 'Niños', prices.children ]].map(([label, value]) => (
+                {[[ 'Adultos', prices.adults ], [ 'Niños (2 a 10 años)', prices.children ]].map(([label, value]) => (
                   <div key={label} className="rounded-xl border border-[#BCA477]/30 p-3">
                     <dt className="text-sm text-stone-600">{label}</dt>
                     <dd className="mt-2 break-words font-display text-2xl text-[#51402B]">{value || 'A consultar'}</dd>
