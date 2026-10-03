@@ -1,3 +1,5 @@
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import { EffectsProvider, Reveal, ParallaxPhoto, ParallaxLayer, ParallaxFooter, ScrollHint } from './components/InvitationEffects'
 import sunsetPhoto from './assets/cele-rodri-atardecer.jpeg'
 import PaymentDetails from './components/PaymentDetails'
 import WeddingCalendar from './components/WeddingCalendar'
@@ -55,25 +57,30 @@ function useCountdown(targetDate) {
 }
 
 function Divider() {
+  const reduced = useReducedMotion()
+  const line = {
+    hidden: { scaleX: 0 },
+    visible: { scaleX: 1, transition: { duration: 0.8, ease: 'easeOut' } },
+  }
   return (
-    <div className="flex items-center justify-center gap-4 py-1">
-      <span className="h-px w-12 bg-stone-300" />
+    <motion.div initial={reduced ? false : 'hidden'} animate={reduced ? 'visible' : 'hidden'} whileInView="visible" viewport={{ once: false, amount: 1 }} className="flex items-center justify-center gap-4 py-1">
+      <motion.span variants={reduced ? undefined : line} className="h-px w-12 origin-right bg-stone-300" />
       <span className="h-1 w-1 rounded-full bg-stone-400" />
-      <span className="h-px w-12 bg-stone-300" />
-    </div>
+      <motion.span variants={reduced ? undefined : line} className="h-px w-12 origin-left bg-stone-300" />
+    </motion.div>
   )
 }
 
 function Section({ eyebrow, children, prominent = false }) {
   return (
-    <section className="text-center space-y-6">
+    <Reveal as="section" className="text-center space-y-6">
       {eyebrow && (
         <p className={prominent ? "text-base sm:text-lg tracking-[0.22em] uppercase text-[#51402B]" : "text-[11px] sm:text-xs tracking-[0.22em] uppercase text-stone-500"}>
           {eyebrow}
         </p>
       )}
       {children}
-    </section>
+    </Reveal>
   )
 }
 
@@ -87,31 +94,41 @@ const COUNTDOWN_UNITS = [
 export default function App() {
   const [introDone, setIntroDone] = useState(false)
   const countdown = useCountdown(WEDDING_DATE)
+  const reduceMotion = useReducedMotion()
+
+  const handleOpenInvitation = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    setIntroDone(true)
+  }
 
   return (
-    <>
-      {!introDone && <EnvelopeIntro onOpen={() => setIntroDone(true)} />}
-      <div className="min-h-screen bg-[#F2E9DA] text-[#51402B] font-normal selection:bg-stone-800 selection:text-stone-50">
+    <EffectsProvider ready={introDone}>
+      {!introDone && <EnvelopeIntro onOpen={handleOpenInvitation} />}
+      <div className="invitation-parallax min-h-screen bg-[#F2E9DA] text-[#51402B] font-normal selection:bg-stone-800 selection:text-stone-50">
 
-      <header className="relative h-screen w-full overflow-hidden">
-        <img
+      <header className="parallax-cover h-screen w-full overflow-hidden">
+        <ParallaxPhoto
+          active={introDone}
+          hero
           src={heroPhoto}
           alt="Cele y Rodri"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-stone-900/20 via-stone-900/40 to-stone-900/85" />
-        <div className="relative z-10 flex h-full flex-col items-center justify-end px-6 pb-16 sm:pb-24 text-center text-stone-50">
-          <p className="font-display text-3xl sm:text-4xl italic text-stone-100">
+        <ParallaxLayer active={introDone} travel={30} className="relative z-10 flex h-full flex-col items-center justify-end px-6 pb-16 sm:pb-24 text-center text-stone-50">
+          <motion.p initial={{ opacity: 0, y: 12 }} animate={introDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }} transition={{ duration: reduceMotion ? 0 : 0.8 }} className="font-display text-3xl sm:text-4xl italic text-stone-100">
             Nos casamos
-          </p>
-          <p className="mt-4 max-w-sm text-sm sm:text-base text-stone-200 leading-relaxed">
+          </motion.p>
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: introDone ? 1 : 0 }} transition={{ duration: reduceMotion ? 0 : 1, delay: reduceMotion ? 0 : 0.25 }} className="mt-4 max-w-sm text-sm sm:text-base text-stone-200 leading-relaxed">
             Queremos compartir con vos uno de los días más importantes
             de nuestras vidas.
-          </p>
-        </div>
+          </motion.p>
+        </ParallaxLayer>
+        <ScrollHint active={introDone} />
       </header>
 
-      <main className="relative isolate mx-auto w-full max-w-2xl px-6 py-12 sm:py-16 md:py-20 space-y-10 sm:space-y-12 md:space-y-16">
+      <div className="parallax-content">
+      <main id="invitacion" className="relative isolate mx-auto w-full max-w-2xl px-6 py-12 sm:py-16 md:py-20 space-y-10 sm:space-y-12 md:space-y-16">
         <BotanicalCorners />
 
         <Section eyebrow="El gran día" prominent>
@@ -128,30 +145,82 @@ export default function App() {
             ¡Nos hace mucha ilusión celebrarlo con vos!
             Tu compañía hará que este día sea aún más especial.
           </p>
-          <figure className="mx-auto w-full max-w-sm">
-            <img
+          <motion.figure
+            className="chapter-photo mx-auto w-full max-w-sm overflow-hidden"
+            initial={reduceMotion ? false : { opacity: 0, x: -28 }}
+            animate={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -28 }}
+            whileInView={introDone ? { opacity: 1, x: reduceMotion ? 0 : [-28, 9, -5, 2, 0] } : undefined}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{
+              opacity: { duration: reduceMotion ? 0 : 1.2 },
+              x: { duration: reduceMotion ? 0 : 2.2, times: [0, 0.5, 0.72, 0.88, 1], ease: 'easeInOut' },
+            }}
+          >
+            <div className="chapter-photo-window">
+            <ParallaxPhoto
+              active={introDone}
+              travel={24}
+              zoom={1.16}
               src={sunsetPhoto}
               alt="Cele y Rodri juntos frente al mar al atardecer"
               width="960"
               height="1280"
               loading="lazy"
               decoding="async"
-              className="block h-auto w-full rounded-sm"
+              className="block h-auto w-full"
             />
-          </figure>
+            </div>
+            <svg className="chapter-photo-frame" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <defs>
+                <g id="photo-frame-leaves" fill="#59462F">
+                  <path d="M17 4Q12 34 18 68" fill="none" stroke="#59462F" strokeWidth="0.8" />
+                  <path d="M16 14Q4 9 2 18Q9 22 16 14ZM16 25Q28 14 31 23Q27 29 16 25ZM16 34Q3 26 1 35Q8 42 16 34ZM17 44Q29 33 32 42Q27 49 17 44ZM17 53Q5 43 3 52Q8 60 17 53ZM18 63Q29 52 32 60Q26 67 18 63Z" />
+                </g>
+                <g id="photo-frame-stars" fill="#BCA477">
+                  <path d="M0-8Q1-1 6 0Q1 1 0 8Q-1 1-6 0Q-1-1 0-8Z" />
+                  <path d="M10-16Q10.5-12 13-11Q10.5-10 10-6Q9.5-10 7-11Q9.5-12 10-16Z" />
+                </g>
+              </defs>
+              <path d="M112 0H300V76C281 65 277 38 251 34C222 29 199 58 172 49C145 40 136 7 112 0Z" fill="#59462F" />
+              <path d="M0 326C22 330 28 355 55 354C84 352 98 332 124 352C143 367 142 391 166 400H0Z" fill="#59462F" />
+              <g fill="none" stroke="#BCA477" strokeWidth="1.3" strokeLinecap="round">
+                <path d="M81 0C99 37 143 53 175 40C205 28 221 8 245 21C269 33 275 60 300 66" />
+                <path d="M0 339C26 343 48 378 80 373C107 369 117 351 140 366C157 377 162 396 185 400" />
+                <path d="M296 116Q278 133 294 154T293 195" />
+                <path d="M4 206Q21 223 6 244T7 287" />
+              </g>
+              <g fill="none" stroke="#FAF5E9" strokeWidth="1" strokeLinecap="round">
+                <path d="M299 104Q279 121 290 146T295 182" />
+                <path d="M1 216Q16 233 3 253T4 292" />
+              </g>
+              <use href="#photo-frame-leaves" transform="translate(6 49) scale(0.75)" />
+              <use href="#photo-frame-leaves" transform="translate(294 350) rotate(180) scale(0.75)" />
+              <use href="#photo-frame-stars" transform="translate(29 35)" />
+              <use href="#photo-frame-stars" transform="translate(270 368) rotate(180)" />
+            </svg>
+          </motion.figure>
         </Section>
 
         <Section eyebrow="Faltan">
           <div className="grid grid-cols-4 gap-2 sm:gap-6 max-w-md mx-auto">
-            {COUNTDOWN_UNITS.map(({ key, label }) => (
-              <div key={key} className="flex flex-col items-center">
+            {COUNTDOWN_UNITS.map(({ key, label }, index) => (
+              <motion.div key={key} className="flex flex-col items-center"
+                initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                animate={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                whileInView={introDone ? { opacity: 1, y: 0 } : undefined}
+                viewport={{ once: false, amount: 0.5 }}
+                transition={{ duration: reduceMotion ? 0 : 0.55, delay: reduceMotion ? 0 : index * 0.1 }}>
                 <p className="font-display text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight tabular-nums">
-                  {String(countdown[key]).padStart(2, '0')}
+                  <AnimatePresence initial={false} mode="popLayout">
+                    <motion.span key={countdown[key]} className="inline-block" initial={reduceMotion ? false : { opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={reduceMotion ? undefined : { opacity: 0, y: -5 }} transition={{ duration: 0.22 }}>
+                      {String(countdown[key]).padStart(2, '0')}
+                    </motion.span>
+                  </AnimatePresence>
                 </p>
                 <p className="mt-2 text-[10px] sm:text-xs tracking-[0.18em] uppercase text-stone-500">
                   {label}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </Section>
@@ -262,12 +331,10 @@ export default function App() {
           </div>
         </Section>
 
-        <footer className="pt-4 text-center font-display text-xl italic text-stone-500">
-          Cele &amp; Rodri · 2027
-        </footer>
-
       </main>
+      </div>
+      <ParallaxFooter>Cele &amp; Rodri · 2027</ParallaxFooter>
     </div>
-    </>
+    </EffectsProvider>
   )
 }

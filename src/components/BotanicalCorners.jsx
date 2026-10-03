@@ -1,9 +1,14 @@
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
+
 // Ornamentos vectoriales: decorativos y livianos para celulares.
 function Sprig({ className }) {
+  const reduced = useReducedMotion()
+  const { scrollYProgress } = useScroll()
+  const y = useTransform(scrollYProgress, [0, 1], [0, className.includes('-top') ? 40 : -40])
   return (
-    <svg className={className} viewBox="0 0 180 260" fill="none" aria-hidden="true" focusable="false">
-      <g stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M24 235C57 190 87 124 147 29" />
+    <motion.svg initial={reduced ? false : { opacity: 0 }} animate={{ opacity: reduced ? 0.55 : 0 }} whileInView={{ opacity: 0.55 }} viewport={{ once: false }} transition={{ duration: reduced ? 0 : 1.2 }} className={className} viewBox="0 0 180 260" fill="none" aria-hidden="true" focusable="false">
+      <motion.g style={reduced ? undefined : { y }} stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round">
+        <motion.path initial={reduced ? false : { pathLength: 0 }} animate={{ pathLength: reduced ? 1 : 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: false }} transition={{ duration: reduced ? 0 : 1.5 }} d="M24 235C57 190 87 124 147 29" />
         <g fill="currentColor" stroke="none">
           <path d="M41 209Q19 197 15 170Q38 182 41 209Z" />
           <path d="M47 198Q72 176 92 181Q74 199 47 198Z" />
@@ -16,8 +21,8 @@ function Sprig({ className }) {
           <path d="M131 56Q125 32 144 12Q147 38 131 56Z" />
           <path d="M137 46Q154 28 171 30Q159 45 137 46Z" />
         </g>
-      </g>
-    </svg>
+      </motion.g>
+    </motion.svg>
   )
 }
 

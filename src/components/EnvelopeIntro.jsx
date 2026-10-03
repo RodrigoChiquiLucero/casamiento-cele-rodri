@@ -87,6 +87,12 @@ export default function EnvelopeIntro({ onOpen }) {
   const reduceMotion = useReducedMotion()
 
   useEffect(() => {
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = previousOverflow }
+  }, [])
+
+  useEffect(() => {
     if (phase !== 'opening') return
     const timer = setTimeout(() => setPhase('done'), 3400)
     return () => clearTimeout(timer)
