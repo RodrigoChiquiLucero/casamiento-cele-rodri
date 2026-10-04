@@ -56,8 +56,10 @@ export function ParallaxFooter({ children }) {
   return (
     <div ref={ref} className="parallax-footer-space">
       <motion.footer className="parallax-footer text-center font-display text-xl italic text-stone-500"
-        style={reduced ? undefined : { opacity: ready ? opacity : 0, y }}>
-        {children}
+        style={reduced ? undefined : { opacity: ready ? opacity : 0 }}>
+        <motion.div style={reduced ? undefined : { y }}>
+          {children}
+        </motion.div>
       </motion.footer>
     </div>
   )

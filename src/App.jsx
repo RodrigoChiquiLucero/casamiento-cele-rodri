@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { EffectsProvider, Reveal, ParallaxPhoto, ParallaxLayer, ParallaxFooter, ScrollHint } from './components/InvitationEffects'
 import sunsetPhoto from './assets/cele-rodri-atardecer.jpeg'
+import MusicPlayer from './components/MusicPlayer'
 import PaymentDetails from './components/PaymentDetails'
 import WeddingCalendar from './components/WeddingCalendar'
 import BotanicalCorners from './components/BotanicalCorners'
@@ -130,6 +131,12 @@ export default function App() {
       <div className="parallax-content">
       <main id="invitacion" className="relative isolate mx-auto w-full max-w-2xl px-6 py-12 sm:py-16 md:py-20 space-y-10 sm:space-y-12 md:space-y-16">
         <BotanicalCorners />
+
+        <Section eyebrow="Nuestra canción">
+          <MusicPlayer />
+        </Section>
+
+        <Divider />
 
         <Section eyebrow="El gran día" prominent>
           <WeddingCalendar />

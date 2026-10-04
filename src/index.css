@@ -48,7 +48,10 @@ body {
 }
 
 .parallax-footer-space {
+  position: relative;
+  z-index: 1;
   height: 180px;
+  background: #F2E9DA;
 }
 
 .chapter-photo {
@@ -87,6 +90,7 @@ body {
   z-index: 1;
   background: #F2E9DA;
   pointer-events: none;
+  overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -114,6 +118,54 @@ body {
 .invitation-link:hover {
   background: #D5BB90;
   border-color: #AD8958;
+}
+
+.music-control, .music-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #A48A62;
+  width: 44px;
+  height: 44px;
+}
+
+.music-control {
+  width: 64px;
+  height: 64px;
+  background: #A48A62;
+  color: #FAF5E9;
+}
+
+.music-control:hover { background: #796448; }
+.music-control:focus-visible, .music-secondary:focus-visible, .music-progress:focus-visible {
+  outline: 2px solid #51402B;
+  outline-offset: 4px;
+}
+
+.music-progress {
+  display: block;
+  appearance: none;
+  width: 100%;
+  height: 3px;
+  background: #BCA477;
+  cursor: pointer;
+}
+
+.music-progress::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #A48A62;
+}
+
+.music-progress::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 50%;
+  background: #A48A62;
 }
 
 .invitation-link:not(:disabled):hover {
