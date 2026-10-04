@@ -22,6 +22,7 @@ function WaxSeal({ className }) {
   }, [])
 
   const textR = 37
+  const topTextR = 34
 
   return (
     <svg viewBox="0 0 100 100" className={className} aria-hidden="true">
@@ -31,7 +32,7 @@ function WaxSeal({ className }) {
       <defs>
         <path
           id="seal-top-arc"
-          d={`M ${50 - textR},50 A ${textR},${textR} 0 0 1 ${50 + textR},50`}
+          d={`M ${50 - topTextR},50 A ${topTextR},${topTextR} 0 0 1 ${50 + topTextR},50`}
         />
         <path
           id="seal-bottom-arc"
@@ -39,9 +40,9 @@ function WaxSeal({ className }) {
         />
       </defs>
 
-      <text fill="currentColor" fontSize="5.5" letterSpacing="1.4" fontWeight="300">
+      <text fill="currentColor" fontSize="5.5" letterSpacing="0.9" fontWeight="300">
         <textPath href="#seal-top-arc" startOffset="50%" textAnchor="middle">
-          CELE · RODRI
+          CELE &amp; RODRI
         </textPath>
       </text>
 
