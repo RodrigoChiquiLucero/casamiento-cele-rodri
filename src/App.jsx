@@ -281,6 +281,12 @@ export default function App() {
             <rect x="8" y="10" width="32" height="31" rx="3" />
             <path d="M16 7v7m16-7v7M8 19h32M17 29l5 5 10-11" />
           </svg>
+          <p className="mx-auto max-w-sm text-sm leading-relaxed text-stone-600">
+            Nos encantaría contar con vos.
+            <span className="mt-2 block font-medium text-[#51402B]">
+              Confirmá tu asistencia hasta el 1 de septiembre de 2027.
+            </span>
+          </p>
         <div className="mx-auto grid w-full max-w-xs grid-cols-1">
           {RSVP_FORM_URL ? (
             <a
