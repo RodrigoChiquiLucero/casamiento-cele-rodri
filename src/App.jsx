@@ -57,6 +57,16 @@ function useCountdown(targetDate) {
   }
 }
 
+function LinkArrow() {
+  return (
+    <svg className="link-arrow" width="16" height="16" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
+      strokeLinejoin="round" aria-hidden="true" focusable="false">
+      <path d="M6 18 18 6M7 6h11v11" />
+    </svg>
+  )
+}
+
 function Divider() {
   const reduced = useReducedMotion()
   const line = {
@@ -238,7 +248,7 @@ export default function App() {
                     aria-label={`Cómo llegar a ${location.name} (abre en otra pestaña)`}
                     className="invitation-link"
                   >
-                    Cómo llegar <span aria-hidden="true">↗</span>
+                    Cómo llegar <LinkArrow />
                   </a>
                 </div>
               </article>
@@ -280,7 +290,7 @@ export default function App() {
               aria-label="Confirmar asistencia (abre en otra pestaña)"
               className="invitation-link"
             >
-              Confirmar <span aria-hidden="true">↗</span>
+              Confirmar <LinkArrow />
             </a>
           ) : (
             <button
@@ -289,7 +299,7 @@ export default function App() {
               title="El formulario estará disponible próximamente"
               className="invitation-link cursor-not-allowed opacity-60"
             >
-              Confirmar <span aria-hidden="true">↗</span>
+              Confirmar <LinkArrow />
             </button>
           )}
         </div>
@@ -335,12 +345,12 @@ export default function App() {
                 aria-label="Agregar canción (abre en otra pestaña)"
                 className="invitation-link"
               >
-                Agregar canción <span aria-hidden="true">↗</span>
+                Agregar canción <LinkArrow />
               </a>
             ) : (
               <>
                 <button type="button" disabled aria-describedby="songs-coming-soon" className="invitation-link cursor-not-allowed opacity-60">
-                  Agregar canción <span aria-hidden="true">↗</span>
+                  Agregar canción <LinkArrow />
                 </button>
                 <p id="songs-coming-soon" className="text-xs leading-relaxed text-stone-600">Pronto vas a poder sumar tu canción.</p>
               </>

@@ -176,11 +176,13 @@ body {
   transform: translateY(0) scale(0.98);
 }
 
-.invitation-link span[aria-hidden] {
+.invitation-link .link-arrow {
+  display: block;
+  flex-shrink: 0;
   transition: transform 180ms ease;
 }
 
-.invitation-link:not(:disabled):hover span[aria-hidden] {
+.invitation-link:not(:disabled):hover .link-arrow {
   transform: translate(2px, -2px);
 }
 
@@ -208,10 +210,10 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .invitation-link, .invitation-link span[aria-hidden] { transition: none; }
+  .invitation-link, .invitation-link .link-arrow { transition: none; }
   .invitation-link:not(:disabled):hover,
   .invitation-link:not(:disabled):active,
-  .invitation-link:not(:disabled):hover span[aria-hidden] { transform: none; }
+  .invitation-link:not(:disabled):hover .link-arrow { transform: none; }
 }
 
 .invitation-link:focus-visible {
