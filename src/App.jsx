@@ -25,7 +25,7 @@ const LOCATIONS = [
   },
 ]
 // Pegar acá el enlace público de Google Forms cuando esté disponible.
-const RSVP_FORM_URL = ''
+const RSVP_FORM_URL = 'https://forms.gle/UerMSQHiD7oL6vWd6'
 // Enlace para agregar canciones: playlist colaborativa o formulario de sugerencias.
 const SONG_REQUEST_URL = 'https://open.spotify.com/playlist/4SV5ATSEIuFOKugC7ER7je?si=LUAy3PNvSZiIswiKarqyiw&utm_source=whatsapp&pt=ba91fdd3b5c2c8a9b89b5f4fa917e2df&pi=CCjQqNvVQXG75'
 // La misma cuenta se usa para abonar la tarjeta y para regalos opcionales.
@@ -256,20 +256,29 @@ export default function App() {
 
         <Divider />
 
-        <Section>
-          <svg className="mx-auto h-12 w-12 text-[#816035]" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
-            <path d="M9 23v18h30V23M6 16h36v7H6zM24 16v25" />
-            <path d="M24 16c-8 0-13-2-13-6a4 4 0 0 1 7-3c3 3 6 9 6 9Zm0 0c8 0 13-2 13-6a4 4 0 0 0-7-3c-3 3-6 9-6 9Z" />
+        <Section eyebrow="Tarjeta">
+          <svg className="mx-auto h-12 w-12 text-[#816035]" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="16" cy="19" r="12" />
+            <circle cx="16" cy="19" r="9.5" />
+            <path d="M26 29a12 12 0 1 1 16-7M28 26a9.5 9.5 0 1 1 11-5" />
+            <path d="M10 29c8 10 21 10 33-2M24 36c-4-1-7-4-9-7M28 36c1-5 3-9 7-11-1 5-3 9-7 11ZM34 32c4-1 8 0 11 3-5 1-8 0-11-3ZM39 29c1-5 4-8 8-9-1 5-4 8-8 9ZM23 36c4 0 7 2 10 6-5 0-8-2-10-6Z" />
+            <path d="M35 25l2-5" />
+            <circle cx="37.5" cy="18.5" r="1.5" />
           </svg>
-          <h2 className="font-display text-3xl sm:text-4xl italic text-[#51402B]">Un regalo de corazón</h2>
           <p className="mx-auto max-w-sm text-sm leading-relaxed text-stone-600">
-            Tu presencia es el regalo más importante para nosotros. Sin embargo,
-            si deseas acompañarnos con un detalle, puedes encontrar la información a continuación:
+            Nos gustaría compartir este momento tan importante con vos.
+            Acá podés consultar el valor de la tarjeta y los datos para abonarla.
           </p>
           <PaymentDetails account={PAYMENT_ACCOUNT} prices={TICKET_PRICES} />
         </Section>
 
+        <Divider />
+
         <Section eyebrow="Confirmar tu asistencia">
+          <svg className="mx-auto h-12 w-12 text-[#816035]" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+            <rect x="8" y="10" width="32" height="31" rx="3" />
+            <path d="M16 7v7m16-7v7M8 19h32M17 29l5 5 10-11" />
+          </svg>
         <div className="mx-auto grid w-full max-w-xs grid-cols-1">
           {RSVP_FORM_URL ? (
             <a
@@ -292,6 +301,22 @@ export default function App() {
             </button>
           )}
         </div>
+        </Section>
+
+        <Divider />
+
+        <Section>
+          <svg className="mx-auto h-12 w-12 text-[#816035]" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+            <path d="M9 23v18h30V23M6 16h36v7H6zM24 16v25" />
+            <path d="M24 16c-8 0-13-2-13-6a4 4 0 0 1 7-3c3 3 6 9 6 9Zm0 0c8 0 13-2 13-6a4 4 0 0 0-7-3c-3 3-6 9-6 9Z" />
+          </svg>
+          <h2 className="font-display text-3xl sm:text-4xl italic text-[#51402B]">¿Querés hacernos un regalito?</h2>
+          <p className="mx-auto max-w-sm text-sm leading-relaxed text-stone-600">
+            Tu presencia es nuestro mejor regalo. Si además del pago de la tarjeta
+            querés acompañarnos con un detalle en esta nueva etapa, podés hacerlo por acá.
+            Es totalmente opcional.
+          </p>
+          <PaymentDetails account={PAYMENT_ACCOUNT} prices={TICKET_PRICES} gift />
         </Section>
 
         <Divider />

@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 
-export default function PaymentDetails({ account, prices }) {
+export default function PaymentDetails({ account, prices, gift = false }) {
+  const id = useId()
   const dialogRef = useRef(null)
   const [open, setOpen] = useState(false)
 
@@ -19,12 +20,12 @@ export default function PaymentDetails({ account, prices }) {
   return (
     <>
       <button type="button" className="invitation-link w-full max-w-xs" aria-haspopup="dialog" onClick={() => setOpen(true)}>
-        Ver datos
+        {gift ? 'Hacernos un regalo' : 'Abonar la tarjeta'}
       </button>
       <dialog
         ref={dialogRef}
         className="payment-dialog"
-        aria-labelledby="payment-title"
+        aria-labelledby={`${id}-payment-title`}
         onClose={() => setOpen(false)}
         onClick={(event) => {
           if (event.target === event.currentTarget) setOpen(false)
@@ -32,14 +33,14 @@ export default function PaymentDetails({ account, prices }) {
       >
         <div className="payment-dialog-content">
           <div className="sticky top-0 z-10 flex items-center justify-between gap-3 border-b border-[#BCA477]/30 bg-[#EADBC6] px-5 py-3">
-            <h2 id="payment-title" className="font-display text-3xl italic text-[#51402B]">Tarjeta y regalos</h2>
+            <h2 id={`${id}-payment-title`} className="font-display text-3xl italic text-[#51402B]">{gift ? 'Un regalo de corazón' : 'Abonar la tarjeta'}</h2>
             <button type="button" autoFocus onClick={() => setOpen(false)} aria-label="Cerrar datos" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-2xl text-[#816035] hover:bg-[#E2CCAA] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#816035]">
               <span aria-hidden="true">×</span>
             </button>
           </div>
           <div className="space-y-6 px-5 py-6 sm:px-8">
-            <section aria-labelledby="ticket-title">
-              <h3 id="ticket-title" className="mb-4 font-display text-2xl text-[#51402B]">Valor de la tarjeta por persona</h3>
+            {!gift && <section aria-labelledby={`${id}-ticket-title`}>
+              <h3 id={`${id}-ticket-title`} className="mb-4 font-display text-2xl text-[#51402B]">Valor de la tarjeta por persona</h3>
               <dl className="grid grid-cols-2 gap-3">
                 {[[ 'Adultos', prices.adults ], [ 'Niños (2 a 10 años)', prices.children ]].map(([label, value]) => (
                   <div key={label} className="rounded-xl border border-[#BCA477]/30 p-3">
@@ -48,10 +49,10 @@ export default function PaymentDetails({ account, prices }) {
                   </div>
                 ))}
               </dl>
-            </section>
-            <section aria-labelledby="account-title">
-              <h3 id="account-title" className="mb-3 font-display text-2xl text-[#51402B]">Datos de la cuenta</h3>
-              <p className="mb-4 text-sm leading-relaxed text-stone-600">Podés usar esta misma cuenta para abonar la tarjeta y, si querés, hacernos un regalo.</p>
+            </section>}
+            <section aria-labelledby={`${id}-account-title`}>
+              <h3 id={`${id}-account-title`} className="mb-3 font-display text-2xl text-[#51402B]">Datos de la cuenta</h3>
+              {!gift && <p className="mb-4 text-sm leading-relaxed text-stone-600">Podés abonar tu tarjeta por transferencia a esta cuenta y adjuntar el comprobante en el formulario de confirmación.</p>}
               <dl className="space-y-4 text-sm">
                 {[
                   ['Alias', account.alias], ['CVU', account.cvu],
@@ -64,9 +65,9 @@ export default function PaymentDetails({ account, prices }) {
                 ))}
               </dl>
             </section>
-            <p className="border-t border-[#BCA477]/30 pt-4 text-xs leading-relaxed text-stone-600">
+            {!gift && <p className="border-t border-[#BCA477]/30 pt-4 text-xs leading-relaxed text-stone-600">
               El valor de la tarjeta se actualizará mes a mes. Consultá el precio vigente antes de realizar el pago.
-            </p>
+            </p>}
           </div>
         </div>
       </dialog>
