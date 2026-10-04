@@ -146,7 +146,7 @@ export default function App() {
             Tu compañía hará que este día sea aún más especial.
           </p>
           <motion.figure
-            className="chapter-photo mx-auto w-full max-w-sm overflow-hidden"
+            className="chapter-photo mx-auto w-[92%] max-w-[22rem] overflow-hidden"
             initial={reduceMotion ? false : { opacity: 0, x: -28 }}
             animate={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -28 }}
             whileInView={introDone ? { opacity: 1, x: reduceMotion ? 0 : [-28, 9, -5, 2, 0] } : undefined}
