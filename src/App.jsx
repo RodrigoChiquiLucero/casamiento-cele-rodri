@@ -156,11 +156,15 @@ export default function App() {
               x: { duration: reduceMotion ? 0 : 2.2, times: [0, 0.5, 0.72, 0.88, 1], ease: 'easeInOut' },
             }}
           >
+
+            <div className="chapter-photo-depth">
             <div className="chapter-photo-window">
             <ParallaxPhoto
               active={introDone}
-              travel={24}
+              travel={16}
               zoom={1.16}
+              offsetX={5}
+              offsetY={-3}
               src={sunsetPhoto}
               alt="Cele y Rodri juntos frente al mar al atardecer"
               width="960"
@@ -170,34 +174,15 @@ export default function App() {
               className="block h-auto w-full"
             />
             </div>
-            <svg className="chapter-photo-frame" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            </div>
+            <svg width="0" height="0" className="absolute" aria-hidden="true" focusable="false">
               <defs>
-                <g id="photo-frame-leaves" fill="#59462F">
-                  <path d="M17 4Q12 34 18 68" fill="none" stroke="#59462F" strokeWidth="0.8" />
-                  <path d="M16 14Q4 9 2 18Q9 22 16 14ZM16 25Q28 14 31 23Q27 29 16 25ZM16 34Q3 26 1 35Q8 42 16 34ZM17 44Q29 33 32 42Q27 49 17 44ZM17 53Q5 43 3 52Q8 60 17 53ZM18 63Q29 52 32 60Q26 67 18 63Z" />
-                </g>
-                <g id="photo-frame-stars" fill="#BCA477">
-                  <path d="M0-8Q1-1 6 0Q1 1 0 8Q-1 1-6 0Q-1-1 0-8Z" />
-                  <path d="M10-16Q10.5-12 13-11Q10.5-10 10-6Q9.5-10 7-11Q9.5-12 10-16Z" />
-                </g>
+                <clipPath id="chapter-photo-organic" clipPathUnits="objectBoundingBox">
+                  <path d="M.43,.015 C.64,-.018 .88,.06 .925,.16 C.967,.245 .939,.3 .894,.355 C.834,.43 .908,.49 .95,.565 C.995,.642 .928,.68 .92,.725 C.909,.773 .975,.828 .938,.892 C.892,.975 .702,.992 .506,.985 C.3,.997 .09,.95 .055,.875 C.023,.803 .078,.756 .102,.7 C.132,.639 .084,.591 .045,.525 C.007,.452 .016,.383 .069,.324 C.104,.281 .086,.218 .096,.154 C.107,.078 .273,.025 .43,.015 Z" />
+                </clipPath>
               </defs>
-              <path d="M112 0H300V76C281 65 277 38 251 34C222 29 199 58 172 49C145 40 136 7 112 0Z" fill="#59462F" />
-              <path d="M0 326C22 330 28 355 55 354C84 352 98 332 124 352C143 367 142 391 166 400H0Z" fill="#59462F" />
-              <g fill="none" stroke="#BCA477" strokeWidth="1.3" strokeLinecap="round">
-                <path d="M81 0C99 37 143 53 175 40C205 28 221 8 245 21C269 33 275 60 300 66" />
-                <path d="M0 339C26 343 48 378 80 373C107 369 117 351 140 366C157 377 162 396 185 400" />
-                <path d="M296 116Q278 133 294 154T293 195" />
-                <path d="M4 206Q21 223 6 244T7 287" />
-              </g>
-              <g fill="none" stroke="#FAF5E9" strokeWidth="1" strokeLinecap="round">
-                <path d="M299 104Q279 121 290 146T295 182" />
-                <path d="M1 216Q16 233 3 253T4 292" />
-              </g>
-              <use href="#photo-frame-leaves" transform="translate(6 49) scale(0.75)" />
-              <use href="#photo-frame-leaves" transform="translate(294 350) rotate(180) scale(0.75)" />
-              <use href="#photo-frame-stars" transform="translate(29 35)" />
-              <use href="#photo-frame-stars" transform="translate(270 368) rotate(180)" />
             </svg>
+
           </motion.figure>
         </Section>
 

@@ -27,12 +27,15 @@ export function Reveal({ as = 'div', children, ...props }) {
   )
 }
 
-export function ParallaxPhoto({ active, hero = false, travel = 8, zoom = 1.035, ...props }) {
+export function ParallaxPhoto({ active, hero = false, travel = 8, zoom = 1.035, offsetX = 0, offsetY = 0, ...props }) {
   const ref = useRef(null)
   const reduced = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const y = useTransform(scrollYProgress, [0, 1], hero ? [-45, 45] : [-travel, travel])
-  return <motion.img ref={ref} {...props} style={reduced || !active ? undefined : { y, scale: hero ? 1.16 : zoom }} />
+  const y = useTransform(scrollYProgress, [0, 1], hero ? ['-45px', '45px'] : [`calc(${offsetY}% - ${travel}px)`, `calc(${offsetY}% + ${travel}px)`])
+  const framing = offsetX || offsetY
+  return <motion.img ref={ref} {...props} style={reduced || !active
+    ? (framing ? { x: `${offsetX}%`, y: `${offsetY}%`, scale: zoom } : undefined)
+    : { x: `${offsetX}%`, y, scale: hero ? 1.16 : zoom }} />
 }
 
 export function ParallaxLayer({ active, children, className, travel = 24 }) {
