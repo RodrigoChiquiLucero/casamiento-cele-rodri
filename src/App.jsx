@@ -28,7 +28,7 @@ const LOCATIONS = [
 // Pegar acá el enlace público de Google Forms cuando esté disponible.
 const RSVP_FORM_URL = 'https://forms.gle/UerMSQHiD7oL6vWd6'
 // Enlace para agregar canciones: playlist colaborativa o formulario de sugerencias.
-const SONG_REQUEST_URL = 'https://open.spotify.com/playlist/4SV5ATSEIuFOKugC7ER7je?si=LUAy3PNvSZiIswiKarqyiw&utm_source=whatsapp&pt=ba91fdd3b5c2c8a9b89b5f4fa917e2df&pi=CCjQqNvVQXG75'
+const SONG_REQUEST_URL = 'https://open.spotify.com/playlist/4SV5ATSEIuFOKugC7ER7je?si=ASWYFRRuTsSdXgaiiWa-TQ&utm_source=whatsapp&pt=579b690886af195f6bb64fff34b635ab&pi=XrehX3bkQDmu8'
 // La misma cuenta se usa para abonar la tarjeta y para regalos opcionales.
 const PAYMENT_ACCOUNT = {
   alias: 'bodaceleyrodri2027',
